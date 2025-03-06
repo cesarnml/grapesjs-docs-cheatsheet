@@ -3,6 +3,7 @@
 - [GrapesJS Docs Cheatsheet](#grapesjs-docs-cheatsheet)
   - [Sections](#sections)
   - [Introduction](#introduction)
+  - [Getting Started](#getting-started)
 
 ## Sections
 
@@ -34,5 +35,7 @@
 - `GrapesJS` is a customizable drag & drop HTML page builder
 - Can build for example:
   - [Webpages](https://grapesjs.com/demo.html)
-  - [Newsletters](https://grapesjs.com/demo-newsletter-editor.html)
+  - [Newsletters](https://grapesjs.com/demo-newsletter-editor.html)ls
   - [Responsive email templates](https://grapesjs.com/demo-newsletter-editor.html)
+
+## Getting Started
