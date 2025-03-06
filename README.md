@@ -42,3 +42,12 @@
 
 - The `canvas` is the main part of GrapesJS editor. It's where the **template structure** is defined.
 - A `block` is a reusable piece of HTML that can be dropped on to the canvas.
+  - `Block Manager API` can be used to add blocks dynamically
+
+```js
+editor.BlockManager.add("my-block-id", {
+  label: "...",
+  category: "...",
+  // ...
+});
+```
