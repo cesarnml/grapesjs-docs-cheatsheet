@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { browser } from '$app/environment';
+  import { browser } from '$app/environment'
 
-  import grapesjs, { type Editor } from 'grapesjs';
+  import grapesjs, { type Editor } from 'grapesjs'
 
-  import 'grapesjs/dist/css/grapes.min.css';
-  import '../app.css';
+  import 'grapesjs/dist/css/grapes.min.css'
+  import '../app.css'
 
-  let editor: Editor;
+  let editor: Editor
 
   if (browser) {
     editor = grapesjs.init({
@@ -56,7 +56,7 @@
           },
         ],
       },
-    });
+    })
 
     editor.BlockManager.add('my-block-id', {
       id: 'my-block-id',
@@ -79,11 +79,52 @@
           },
         ],
       },
-    });
-    console.log(editor.getConfig());
+    })
+
+    editor.Panels.addPanel({
+      id: 'panel-top',
+      el: '.panel__top',
+    })
+    editor.Panels.addPanel({
+      id: 'basic-actions',
+      el: '.panel__basic-actions',
+      buttons: [
+        {
+          id: 'visibility',
+          active: true, // active by default
+          className: 'btn-toggle-borders',
+          label: '<u>B</u>',
+          command: 'sw-visibility', // Built-in command
+        },
+        {
+          id: 'export',
+          className: 'btn-open-export',
+          label: 'Exp',
+          command: 'export-template',
+          context: 'export-template', // For grouping context of buttons from the same panel
+        },
+        {
+          id: 'show-json',
+          className: 'btn-show-json',
+          label: 'JSON',
+          context: 'show-json',
+          command(editor: Editor) {
+            editor.Modal.setTitle('Components JSON')
+              .setContent(
+                `<textarea style="width:100%; height: 250px;">
+            ${JSON.stringify(editor.getComponents())}
+          </textarea>`,
+              )
+              .open()
+          },
+        },
+      ],
+    })
+
+    editor.on('run:export-template', () => console.log('After the command run'))
   }
 
-  let { children } = $props();
+  let { children } = $props()
 </script>
 
 {@render children()}

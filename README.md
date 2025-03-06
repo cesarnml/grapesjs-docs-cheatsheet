@@ -73,3 +73,5 @@ editor.BlockManager.add("my-block-id", {
 - _This section was a bit confusing since it references `Model`, `View` and several `Managers` without much context_
 
 ### Panels & Buttons
+
+- `Panels` contain `Buttons` that can execute `actions` (built-in or custom) via a button `command` property
