@@ -8,6 +8,7 @@
     - [Add Blocks](#add-blocks)
     - [Define Components](#define-components)
     - [Panels \& Buttons](#panels--buttons)
+    - [Layers](#layers)
 
 ## Sections
 
@@ -75,3 +76,7 @@ editor.BlockManager.add("my-block-id", {
 ### Panels & Buttons
 
 - `Panels` contain `Buttons` that can execute `actions` (built-in or custom) via a button `command` property
+
+### Layers
+
+- `Layers` provide a tree overview of the HTML structure to facilitate moving around elements

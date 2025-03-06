@@ -16,12 +16,33 @@
       // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
       fromElement: true,
       // Size of the editor
-      height: 'calc(100vh - 50px)',
+      height: '100%',
       width: 'auto',
       // Avoid any default panel
-      panels: { defaults: [] },
-      // Disable the storage manager for the moment
+      panels: {
+        defaults: [
+          {
+            id: 'layers',
+            el: '.panel__right',
+            // Make the panel resizable
+            resizable: {
+              maxDim: 350,
+              minDim: 200,
+              tc: false, // Top handler
+              cl: true, // Left handler
+              cr: false, // Right handler
+              bc: false, // Bottom handler
+              // Being a flex child we need to change `flex-basis` property
+              // instead of the `width` (default)
+              keyWidth: 'flex-basis',
+            },
+          },
+        ],
+      }, // Disable the storage manager for the moment
       storageManager: false,
+      layerManager: {
+        appendTo: '.layers-container',
+      },
       blockManager: {
         appendTo: '#blocks',
         blocks: [
