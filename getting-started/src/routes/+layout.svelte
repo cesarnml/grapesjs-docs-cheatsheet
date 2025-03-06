@@ -85,7 +85,7 @@
       label: 'my-custom-block',
       content: {
         tagName: 'div',
-        draggable: false,
+        draggable: true,
         attributes: { 'some-attribute': 'some-value' },
         components: [
           {

@@ -14,7 +14,7 @@
 ## Sections
 
 - [x] ~~_Introduction_~~ [2025-03-06]
-- [ ] Getting Started
+- [x] ~~_Getting Started_~~ [2025-03-06]
 - [ ] Modules
   - [ ] Components
   - [ ] Components & JS
