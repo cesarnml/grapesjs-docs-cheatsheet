@@ -18,15 +18,16 @@
       // Size of the editor
       height: 'calc(100vh - 50px)',
       width: 'auto',
-      // Disable the storage manager for the moment
-      storageManager: false,
       // Avoid any default panel
       panels: { defaults: [] },
+      // Disable the storage manager for the moment
+      storageManager: false,
       blockManager: {
         appendTo: '#blocks',
         blocks: [
           {
             id: 'section', // id is mandatory
+            category: 'Basic',
             label: '<b>Section</b>', // You can use HTML/SVG inside labels
             attributes: { class: 'gjs-block-section' },
             content: `<section>
@@ -36,11 +37,13 @@
           },
           {
             id: 'text',
+            category: 'Basic',
             label: 'Text',
             content: '<div data-gjs-type="text">Insert your text here</div>',
           },
           {
             id: 'image',
+            category: 'Basic',
             label: 'Image',
             // Select the component once it's dropped
             select: true,
@@ -55,6 +58,28 @@
       },
     });
 
+    editor.BlockManager.add('my-block-id', {
+      id: 'my-block-id',
+      category: 'Ultra',
+      label: 'my-custom-block',
+      content: {
+        tagName: 'div',
+        draggable: false,
+        attributes: { 'some-attribute': 'some-value' },
+        components: [
+          {
+            tagName: 'span',
+            content: '<b>Some static content</b>',
+          },
+          {
+            tagName: 'div',
+            // use `content` for static strings, `components` string will be parsed
+            // and transformed in Components
+            components: '<span>HTML at some point</span>',
+          },
+        ],
+      },
+    });
     console.log(editor.getConfig());
   }
 
