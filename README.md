@@ -9,6 +9,7 @@
     - [Define Components](#define-components)
     - [Panels \& Buttons](#panels--buttons)
     - [Layers](#layers)
+    - [Style Manager](#style-manager)
 
 ## Sections
 
@@ -80,3 +81,5 @@ editor.BlockManager.add("my-block-id", {
 ### Layers
 
 - `Layers` provide a tree overview of the HTML structure to facilitate moving around elements
+
+### Style Manager
