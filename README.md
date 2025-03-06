@@ -83,3 +83,6 @@ editor.BlockManager.add("my-block-id", {
 - `Layers` provide a tree overview of the HTML structure to facilitate moving around elements
 
 ### Style Manager
+
+- `StyleManager` allows adding `class` name attributes and `selector states` to `components` via the `SelectorManager`
+- This section is a bit confusing, but basically these two managers are used to construct blocks that enable changing the component default styles

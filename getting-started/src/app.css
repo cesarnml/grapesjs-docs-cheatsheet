@@ -1,6 +1,6 @@
-@import 'tailwindcss';
+/* @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+@plugin '@tailwindcss/typography'; */
 
 /* Let's highlight canvas boundaries */
 #gjs {
@@ -20,6 +20,6 @@
   min-height: auto;
 }
 
-img {
-  display: block;
+* {
+  margin: 0;
 }

@@ -16,7 +16,7 @@
       // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
       fromElement: true,
       // Size of the editor
-      height: '100%',
+      height: '600px',
       width: 'auto',
       // Avoid any default panel
       panels: {
@@ -37,8 +37,81 @@
               keyWidth: 'flex-basis',
             },
           },
+          {
+            id: 'panel-switcher',
+            el: '.panel__switcher',
+            buttons: [
+              {
+                id: 'show-layers',
+                active: true,
+                label: 'Layers',
+                command: 'show-layers',
+                // Once activated disable the possibility to turn it off
+                togglable: false,
+              },
+              {
+                id: 'show-style',
+                active: true,
+                label: 'Styles',
+                command: 'show-styles',
+                togglable: false,
+              },
+            ],
+          },
         ],
       }, // Disable the storage manager for the moment
+      // The Selector Manager allows to assign classes and
+      // different states (eg. :hover) on components.
+      // Generally, it's used in conjunction with Style Manager
+      // but it's not mandatory
+      selectorManager: {
+        appendTo: '.styles-container',
+      },
+
+      styleManager: {
+        appendTo: '.styles-container',
+        sectors: [
+          {
+            name: 'Dimension',
+            open: false,
+            // Use built-in properties
+            buildProps: ['width', 'min-height', 'padding'],
+            // Use `properties` to define/override single property
+            properties: [
+              {
+                // Type of the input,
+                // options: integer | radio | select | color | slider | file | composite | stack
+                type: 'integer',
+                name: 'The width', // Label for the property
+                property: 'width', // CSS property (if buildProps contains it will be extended)
+                units: ['px', '%'], // Units, available only for 'integer' types
+                defaults: 'auto', // Default value
+                min: 0, // Min value, available only for 'integer' types
+              },
+            ],
+          },
+          {
+            name: 'Extra',
+            open: false,
+            buildProps: ['background-color', 'box-shadow', 'custom-prop'],
+            properties: [
+              {
+                id: 'custom-prop',
+                name: 'Custom Label',
+                property: 'font-size',
+                type: 'select',
+                defaults: '32px',
+                // List of options, available only for 'select' and 'radio'  types
+                options: [
+                  { value: '12px', name: 'Tiny', id: 'tiny' },
+                  { value: '18px', name: 'Medium', id: 'medium' },
+                  { value: '32px', name: 'Big', id: 'big' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
       storageManager: false,
       layerManager: {
         appendTo: '.layers-container',
@@ -140,6 +213,42 @@
           },
         },
       ],
+    })
+
+    // Define commands
+    editor.Commands.add('show-layers', {
+      getRowEl(editor: Editor) {
+        return editor.getContainer()?.closest('.editor-row')
+      },
+      getLayersEl(row) {
+        return row.querySelector('.layers-container')
+      },
+
+      run(editor, sender) {
+        const lmEl = this.getLayersEl(this.getRowEl(editor))
+        lmEl.style.display = ''
+      },
+      stop(editor, sender) {
+        const lmEl = this.getLayersEl(this.getRowEl(editor))
+        lmEl.style.display = 'none'
+      },
+    })
+    editor.Commands.add('show-styles', {
+      getRowEl(editor) {
+        return editor.getContainer().closest('.editor-row')
+      },
+      getStyleEl(row) {
+        return row.querySelector('.styles-container')
+      },
+
+      run(editor, sender) {
+        const smEl = this.getStyleEl(this.getRowEl(editor))
+        smEl.style.display = ''
+      },
+      stop(editor, sender) {
+        const smEl = this.getStyleEl(this.getRowEl(editor))
+        smEl.style.display = 'none'
+      },
     })
 
     editor.on('run:export-template', () => console.log('After the command run'))
