@@ -39,3 +39,6 @@
   - [Responsive email templates](https://grapesjs.com/demo-newsletter-editor.html)
 
 ## Getting Started
+
+- The `canvas` is the main part of GrapesJS editor. It's where the **template structure** is defined.
+- A `block` is a reusable piece of HTML that can be dropped on to the canvas.
