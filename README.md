@@ -14,6 +14,8 @@
     - [Responsive Templates](#responsive-templates)
     - [Store and Load Data](#store-and-load-data)
     - [Theming](#theming)
+  - [Modules](#modules)
+    - [Components (Component Manager)](#components-component-manager)
 
 ## Sections
 
@@ -106,3 +108,7 @@ editor.BlockManager.add("my-block-id", {
 ### Theming
 
 - Via CSS variables or CSS class names
+
+## Modules
+
+### Components (Component Manager)
