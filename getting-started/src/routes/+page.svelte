@@ -1,5 +1,7 @@
 <div class="panel__top">
   <div class="panel__basic-actions"></div>
+  <div class="panel__devices"></div>
+
   <div class="panel__switcher"></div>
 </div>
 <div class="editor-row">
@@ -49,6 +51,10 @@
   }
 
   .panel__switcher {
+    position: initial;
+  }
+
+  .panel__devices {
     position: initial;
   }
 </style>

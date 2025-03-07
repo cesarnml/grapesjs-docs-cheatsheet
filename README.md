@@ -11,6 +11,9 @@
     - [Layers](#layers)
     - [Style Manager](#style-manager)
     - [Traits](#traits)
+    - [Responsive Templates](#responsive-templates)
+    - [Store and Load Data](#store-and-load-data)
+    - [Theming](#theming)
 
 ## Sections
 
@@ -91,3 +94,15 @@ editor.BlockManager.add("my-block-id", {
 ### Traits
 
 - `Traits` allow for assigning custom attributes and behaviors to components
+
+### Responsive Templates
+
+- Facilitates responsive site checks via programmatic adjustment of the viewport width
+
+### Store and Load Data
+
+- I had difficulty trying to setup the save feature as described in the Getting Started section. There seems to be missing info regarding the `commands` property setup
+
+### Theming
+
+- Via CSS variables or CSS class names

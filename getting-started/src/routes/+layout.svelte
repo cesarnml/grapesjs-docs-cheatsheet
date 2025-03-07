@@ -18,6 +18,7 @@
       // Size of the editor
       height: '600px',
       width: 'auto',
+      mediaCondition: 'max-width', // default is `max-width` -- Desktop-first
       // Avoid HTMLElement default panel
       panels: {
         defaults: [
@@ -42,6 +43,12 @@
             el: '.panel__switcher',
             buttons: [
               {
+                id: 'save-page',
+                className: 'fa fa-save',
+                command: 'save-page', // Will map to our custom save command
+                attributes: { title: 'Save Page' },
+              },
+              {
                 id: 'show-layers',
                 active: true,
                 label: 'Layers',
@@ -62,6 +69,25 @@
                 label: 'Traits',
                 command: 'show-traits',
                 togglable: false,
+              },
+            ],
+          },
+          {
+            id: 'panel-devices',
+            el: '.panel__devices',
+            buttons: [
+              {
+                id: 'device-desktop',
+                label: 'D',
+                command: 'set-device-desktop',
+                togglable: false,
+              },
+              {
+                id: 'device-mobile',
+                label: 'M',
+                command: 'set-device-mobile',
+                togglable: false,
+                active: true,
               },
             ],
           },
@@ -119,7 +145,6 @@
           },
         ],
       },
-      storageManager: false,
       layerManager: {
         appendTo: '.layers-container',
       },
@@ -160,6 +185,42 @@
       traitManager: {
         appendTo: '.traits-container',
       },
+      deviceManager: {
+        devices: [
+          {
+            name: 'Desktop',
+            width: '', // default size
+          },
+          {
+            name: 'Mobile',
+            width: '320px', // this value will be used on canvas width
+            widthMedia: '480px', // this value will be used in CSS @media
+          },
+        ],
+      },
+      storageManager: {
+        type: 'local', // Type of the storage, available: 'local' | 'remote'
+        autosave: false, // Store data automatically
+        autoload: true, // Autoload stored data on init
+        stepsBeforeSave: 1, // If autosave enabled, indicates how many changes are necessary before store method is triggered
+        options: {
+          local: {
+            // Options for the `local` type
+            key: 'gjsProject', // The key for the local storage
+          },
+        },
+        // ... REMOTE STORAGE CONFIG
+        // type: 'remote',
+        // stepsBeforeSave: 10,
+        // options: {
+        //   remote: {
+        //     headers: {}, // Custom headers for the remote storage request
+        //     urlStore: 'https://your-server/endpoint/store', // Endpoint URL where to store data project
+        //     urlLoad: 'https://your-server/endpoint/load', // Endpoint URL where to load data project
+        //   },
+        // },
+      },
+      // commands property is a mystery
     })
 
     editor.BlockManager.add('my-block-id', {
@@ -243,6 +304,7 @@
         lmEl.style.display = 'none'
       },
     } as CommandObject)
+
     editor.Commands.add('show-styles', {
       getRowEl(editor: Editor) {
         return editor.getContainer().closest('.editor-row')
@@ -274,7 +336,18 @@
       },
     } as CommandObject)
 
+    // Commands
+    editor.Commands.add('set-device-desktop', {
+      run: (editor) => editor.setDevice('Desktop'),
+    })
+
+    editor.Commands.add('set-device-mobile', {
+      run: (editor) => editor.setDevice('Mobile'),
+    } as CommandObject)
+
     editor.on('run:export-template', () => console.log('After the command run'))
+
+    editor.on('change:device', () => console.log('Current device: ', editor.getDevice()))
   }
 
   let { children } = $props()
