@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment'
 
-  import grapesjs, { type Editor } from 'grapesjs'
+  import grapesjs, { type Editor, type CommandObject } from 'grapesjs'
 
   import 'grapesjs/dist/css/grapes.min.css'
   import '../app.css'
@@ -18,7 +18,7 @@
       // Size of the editor
       height: '600px',
       width: 'auto',
-      // Avoid any default panel
+      // Avoid HTMLElement default panel
       panels: {
         defaults: [
           {
@@ -54,6 +54,13 @@
                 active: true,
                 label: 'Styles',
                 command: 'show-styles',
+                togglable: false,
+              },
+              {
+                id: 'show-traits',
+                active: true,
+                label: 'Traits',
+                command: 'show-traits',
                 togglable: false,
               },
             ],
@@ -150,6 +157,9 @@
           },
         ],
       },
+      traitManager: {
+        appendTo: '.traits-container',
+      },
     })
 
     editor.BlockManager.add('my-block-id', {
@@ -220,36 +230,49 @@
       getRowEl(editor: Editor) {
         return editor.getContainer()?.closest('.editor-row')
       },
-      getLayersEl(row) {
+      getLayersEl(row: HTMLElement) {
         return row.querySelector('.layers-container')
       },
 
-      run(editor, sender) {
+      run(editor, sender: HTMLElement) {
         const lmEl = this.getLayersEl(this.getRowEl(editor))
         lmEl.style.display = ''
       },
-      stop(editor, sender) {
+      stop(editor, sender: HTMLElement) {
         const lmEl = this.getLayersEl(this.getRowEl(editor))
         lmEl.style.display = 'none'
       },
-    })
+    } as CommandObject)
     editor.Commands.add('show-styles', {
-      getRowEl(editor) {
+      getRowEl(editor: Editor) {
         return editor.getContainer().closest('.editor-row')
       },
-      getStyleEl(row) {
+      getStyleEl(row: HTMLElement) {
         return row.querySelector('.styles-container')
       },
 
-      run(editor, sender) {
+      run(editor: Editor, sender: HTMLElement) {
         const smEl = this.getStyleEl(this.getRowEl(editor))
         smEl.style.display = ''
       },
-      stop(editor, sender) {
+      stop(editor: Editor, sender: HTMLElement) {
         const smEl = this.getStyleEl(this.getRowEl(editor))
         smEl.style.display = 'none'
       },
-    })
+    } as CommandObject)
+
+    editor.Commands.add('show-traits', {
+      getTraitsEl(editor: Editor) {
+        const row = editor.getContainer().closest('.editor-row')
+        return row.querySelector('.traits-container')
+      },
+      run(editor: Editor, sender: HTMLElement) {
+        this.getTraitsEl(editor).style.display = ''
+      },
+      stop(editor: Editor, sender: HTMLElement) {
+        this.getTraitsEl(editor).style.display = 'none'
+      },
+    } as CommandObject)
 
     editor.on('run:export-template', () => console.log('After the command run'))
   }

@@ -89,3 +89,5 @@ editor.BlockManager.add("my-block-id", {
 - This section is a bit confusing, but basically these two managers are used to construct blocks that enable changing the component default styles and customize active:hover:click states
 
 ### Traits
+
+- `Traits` allow for assigning custom attributes and behaviors to components
