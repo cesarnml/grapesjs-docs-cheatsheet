@@ -109,6 +109,8 @@ editor.BlockManager.add("my-block-id", {
 
 - Via CSS variables or CSS class names
 
+- RECAP: I figured out the styles that work to reproduce the final Get Started setup. However, I haven't figured out how to switch from automatic saving to manually only saves, since that is missing proper documentation. I will need to read through the Storage Manager documentation and possibly delve into the reference API.
+
 ## Modules
 
 ### Components (Component Manager)
