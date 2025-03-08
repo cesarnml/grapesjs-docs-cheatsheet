@@ -17,7 +17,7 @@
   - [Modules](#modules)
     - [Components (Component Manager)](#components-component-manager)
       - [How Components Work?](#how-components-work)
-      - [Built-in Components Types](#built-in-components-types)
+      - [Built-in Components Types (order by priority in `Component Stack`)](#built-in-components-types-order-by-priority-in-component-stack)
       - [Define Custom Component Type](#define-custom-component-type)
       - [Update Component Type](#update-component-type)
       - [Lifecycle Hooks](#lifecycle-hooks)
@@ -203,7 +203,118 @@ editor.BlockManager.add("my-block-id", {
 
 #### How Components Work?
 
-#### Built-in Components Types
+- Programmatically add components to the canvas:
+
+```js
+// Append components directly to the canvas
+editor.addComponents(`<div>
+  <img src="https://path/image" />
+  <span title="foo">Hello world!!!</span>
+</div>`);
+
+// or into some, already defined, component.
+// For instance, appending to a selected component would be:
+editor.getSelected().append(`<div>...`);
+
+// Actually, editor.addComponents is an alias of...
+editor.getWrapper().append(`<div>...`);
+```
+
+```js
+// surgical programmatic insertion of components
+const { length } = component.components();
+component.append("<div>...", { at: parseInt(length / 2, 10) });
+```
+
+- HTML template strings are parsed into a `Component Definition` (an JSON representation of the component)
+- Truncated example of component JSON definition below ... similar to a `Virtual DOM` representation of an `DOM element`:
+
+```js
+{
+  tagName: 'div',
+  components: [
+    {
+      type: 'image',
+      attributes: { src: 'https://path/image' },
+    }, {
+      tagName: 'span',
+      type: 'text',
+      attributes: { title: 'foo' },
+      components: [{
+        type: 'textnode',
+        content: 'Hello world!!!'
+      }]
+    }
+  ]
+}
+```
+
+- Notice that components have an optional `type` property (`Component Type`) that enables the use of built-in/custom components with integrated behaviors
+- If omitted, the component has `type: 'default'`
+- A component's type is determined via `Component Recognition` which is determined by iterating of the HTML template string by creating the `Component Type Stack` and use of the `isComponent` method
+- A `Model` is a `Component` instance
+
+```js
+const component = editor.addComponents(`<div>
+  <img src="https://path/image" />
+  <span title="foo">Hello world!!!</span>
+</div>`)[0];
+```
+
+```js
+const componentType = component.get("type"); // eg. 'image'
+```
+
+```js
+// Make the component not draggable
+component.set("draggable", false);
+```
+
+- Notice that the outer wrapping div is not considered a component ... it sorta represent the containing array in some sense
+
+```js
+// `.getAttributes` and `.setAttributes` are also methods on a component instance
+const innerComponents = component.components();
+innerComponents.forEach((comp) => console.log(comp.toHTML())); // logs the innerHTML of a component
+// Update component content
+component.components(`<div>Component 1</div><div>Component 2</div>`);
+```
+
+> The main purpose of the Component is to keep track of its data and to return them when necessary. One common thing you might need to ask from the component is to show its current HTML
+
+- To get back the HTML template string from a component instance: `JSON.stringify(component);`
+- A `View` is responsible for rendering a `Component`
+
+```js
+const component = editor.getSelected();
+// Get the View
+const view = component.getView();
+// Get the DOM element
+const el = component.getEl();
+```
+
+> The Model/Component is the source of truth for the final code of templates (eg. the HTML export relies on it) and the View/ComponentView is what is used by the editor to preview our components to users in the canvas.
+
+#### Built-in Components Types (order by priority in `Component Stack`)
+
+- `cell` (opens new window)- Component for handle <td> and <th> elements
+- `row` (opens new window)- Component for handle <tr> elements
+- `table` (opens new window)- Component for handle <table> elements
+- `thead` (opens new window)- Component for handle <thead> elements
+- `tbody` (opens new window)- Component for handle <tbody> elements
+- `tfoot` (opens new window)- Component for handle <tfoot> elements
+- `map` (opens new window)- Component for handle <a> elements
+- `link` (opens new window)- Component for handle <a> elements
+- `label` (opens new window)- Component for handle properly <label> elements
+- `video` (opens new window)- Component for videos
+- `image` (opens new window)- Component for images
+- `script` (opens new window)- Component for handle <script> elements
+- `svg` (opens new window)- Component for handle SVG elements
+- `comment` (opens new window)- Component for comments (might be useful for email editors)
+- `textnode` (opens new window)- Similar to the textnode in DOM definition, so a text element without a tag element.
+- `text` (opens new window)- A simple text component that can be edited inline
+- `wrapper` (opens new window)- The canvas need to contain a root component, a wrapper, this component was made to identify it
+- `default` (opens new window)Default base component
 
 #### Define Custom Component Type
 
