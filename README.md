@@ -106,7 +106,7 @@
 - [x] ~~_Introduction_~~ [2025-03-06]
 - [x] ~~_Getting Started_~~ [2025-03-06]
 - [ ] Modules
-  - [ ] Components
+  - [x] ~~_Components_~~ [2025-03-09]
   - [ ] Components & JS
   - [ ] Traits
   - [ ] Blocks
