@@ -108,10 +108,10 @@
 - [ ] Modules
   - [x] ~~_Components_~~ [2025-03-09]
   - [x] ~~_Components & JS_~~ [2025-03-10]
-  - [ ] Traits
-  - [ ] Blocks
-  - [ ] Assets
-  - [ ] Commands
+  - [x] ~~_Traits_~~ [2025-03-10]
+  - [x] ~~_Blocks_~~ [2025-03-10]
+  - [x] ~~_Assets_~~ [2025-03-10]
+  - [x] ~~_Commands_~~ [2025-03-10]
   - [ ] i18n
   - [ ] Selectors
   - [ ] Layers
