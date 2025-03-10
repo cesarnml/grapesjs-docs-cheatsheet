@@ -107,7 +107,7 @@
 - [x] ~~_Getting Started_~~ [2025-03-06]
 - [ ] Modules
   - [x] ~~_Components_~~ [2025-03-09]
-  - [ ] Components & JS
+  - [x] ~~_Components & JS_~~ [2025-03-10]
   - [ ] Traits
   - [ ] Blocks
   - [ ] Assets
