@@ -106,13 +106,13 @@
 - [x] ~~_Introduction_~~ [2025-03-06]
 - [x] ~~_Getting Started_~~ [2025-03-06]
 - [ ] Modules
-  - [x] ~~_Components_~~ [2025-03-09]
-  - [x] ~~_Components & JS_~~ [2025-03-10]
-  - [x] ~~_Traits_~~ [2025-03-10]
-  - [x] ~~_Blocks_~~ [2025-03-10]
-  - [x] ~~_Assets_~~ [2025-03-10]
-  - [x] ~~_Commands_~~ [2025-03-10]
-  - [x] ~~_i18n_~~ [2025-03-10]
+  - [ ] _Components_
+  - [ ] _Components & JS_
+  - [ ] _Traits_
+  - [ ] _Blocks_
+  - [ ] _Assets_
+  - [ ] _Commands_
+  - [ ] _i18n_
   - [ ] Selectors
   - [ ] Layers
   - [ ] Pages
