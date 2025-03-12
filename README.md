@@ -467,6 +467,8 @@ grapesjs.init({
 
 #### Tips
 
+- How to setup JSX syntax parsing. Not relevant for current project.
+
 ### Components & JS
 
 #### Basic Scripts
