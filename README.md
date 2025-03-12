@@ -422,7 +422,48 @@ domc.addType('new-type', {
 
 #### Components & CSS
 
+- Component styles can be added on `model.defaults.styles` property
+
+```js
+domc.addType("component-css", {
+  model: {
+    defaults: {
+      attributes: { class: "cmp-css" },
+      components: `
+        <span>Component with styles<span>
+        <div class="cmp-css-a">Component A</div>
+        <div class="cmp-css-b">Component B</div>
+      `,
+      styles: `
+        .cmp-css { color: red }
+        .cmp-css-a { color: green }
+        .cmp-css-b { color: blue }
+
+        @media (max-width: 992px) {
+          .cmp-css{ color: darkred; }
+          .cmp-css-a { color: darkgreen }
+          .cmp-css-b { color: darkblue }
+        }
+      `,
+    },
+  },
+});
+```
+
+- To active Component-First styling behavior
+
+```js
+grapesjs.init({
+  ...
+  selectorManager: {
+    componentFirst: true,
+  },
+})
+```
+
 #### Components & JS
+
+- Next section. Delves into Carousel functionality.
 
 #### Tips
 
