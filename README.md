@@ -346,7 +346,75 @@ editor.DomComponents.addType("my-input-type", {
 });
 ```
 
+- Enabling listeners on custom Components Types
+
+```js
+editor.DomComponents.addType("my-input-type", {
+  // ...
+  model: {
+    defaults: {
+      // ...
+      someprop: "initial value",
+    },
+
+    init() {
+      this.on("change:someprop", this.handlePropChange);
+      // Listen to any attribute change
+      this.on("change:attributes", this.handleAttrChange);
+      // Listen to title attribute change
+      this.on("change:attributes:title", this.handleTitleChange);
+    },
+
+    handlePropChange() {
+      const { someprop } = this.props();
+      console.log("New value of someprop: ", someprop);
+    },
+
+    handleAttrChange() {
+      console.log("Attributes updated: ", this.getAttributes());
+    },
+
+    handleTitleChange() {
+      console.log("Attribute title updated: ", this.getAttributes().title);
+    },
+  },
+});
+```
+
 #### Update Component Type
+
+- Component Model and View can be extended
+
+```js
+comps.addType('my-new-component', {
+  isComponent: el => {/* ... */},
+  extend: 'other-defined-component',
+  model: { ... }, // Will extend the model from 'other-defined-component'
+  extendView: 'other-defined-component-2',
+  view: { ... }, // Will extend the view from 'other-defined-component-2'
+});
+```
+
+- Model and View listeners can also be extended
+
+```js
+domc.addType('new-type', {
+  extend: 'parent-type',
+  extendFn: ['init'], // array of model functions to extend from `parent-type`
+  model: {
+    init() {
+      // do something
+    },
+  },
+  extendView: 'other-defined-component-2',
+  extendFnView: ['init']
+  view: {
+    init(){
+      // do something
+    }
+  }
+});
+```
 
 #### Lifecycle Hooks
 
