@@ -418,6 +418,8 @@ domc.addType('new-type', {
 
 #### Lifecycle Hooks
 
+> Each component triggers different lifecycle hooks, which allows you to add custom actions at their specific stages. We can distinguish 2 different types of hooks: global and local. You define local hooks when you create/extend a component type (usually via some model/view method) and the reason is to react to an event of that particular component type. Instead, the global one, will be called indistinctly on any component (you listen to them via editor.on) and you can make use of them for a more generic use case or also listen to them inside other components.
+
 #### Components & CSS
 
 #### Components & JS
