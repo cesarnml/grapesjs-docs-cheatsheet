@@ -318,6 +318,34 @@ const el = component.getEl();
 
 #### Define Custom Component Type
 
+> The first rule of defining new component types is to place the code inside a plugin.
+
+- Custom Component example:
+
+```js
+editor.DomComponents.addType("my-input-type", {
+  // Make the editor understand when to bind `my-input-type`
+  isComponent: (el) => el.tagName === "INPUT",
+
+  // Model definition
+  model: {
+    // Default properties
+    defaults: {
+      tagName: "input",
+      draggable: "form, form *", // Can be dropped only inside `form` elements
+      droppable: false, // Can't drop other elements inside
+      attributes: {
+        // Default attributes
+        type: "text",
+        name: "default-name",
+        placeholder: "Insert text here",
+      },
+      traits: ["name", "placeholder", { type: "checkbox", name: "required" }],
+    },
+  },
+});
+```
+
 #### Update Component Type
 
 #### Lifecycle Hooks
