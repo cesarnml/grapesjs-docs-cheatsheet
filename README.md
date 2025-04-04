@@ -113,7 +113,7 @@
   - [ ] _Assets_
   - [ ] _Commands_
   - [ ] _i18n_
-  - [ ] Selectors
+  - [X] ~~*Selectors*~~ [2025-04-03]
   - [ ] Layers
   - [ ] Pages
   - [ ] Style Manager
