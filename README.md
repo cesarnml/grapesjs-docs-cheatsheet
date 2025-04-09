@@ -113,8 +113,8 @@
   - [ ] _Assets_
   - [ ] _Commands_
   - [ ] _i18n_
-  - [X] ~~*Selectors*~~ [2025-04-03]
-  - [ ] Layers
+  - [x] ~~_Selectors_~~ [2025-04-03]
+  - [x] ~~_Layers_~~ [2025-04-08]
   - [ ] Pages
   - [ ] Style Manager
   - [ ] Storage Manager
