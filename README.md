@@ -107,7 +107,7 @@
 - [x] ~~_Getting Started_~~ [2025-03-06]
 - [ ] Modules
   - [x] ~~_*Components*_~~ [2025-03-15]
-  - [X] ~~*_Components & JS_*~~ [2025-04-10]
+  - [x] ~~_*Components & JS*_~~ [2025-04-10]
   - [ ] _Traits_
   - [ ] _Blocks_
   - [ ] _Assets_
@@ -115,7 +115,7 @@
   - [ ] _i18n_
   - [x] ~~_Selectors_~~ [2025-04-03]
   - [x] ~~_Layers_~~ [2025-04-08]
-  - [ ] Pages
+  - [x] ~~_Pages_~~ [2025-04-18]
   - [ ] Style Manager
   - [ ] Storage Manager
   - [ ] Modal
